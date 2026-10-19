@@ -1,1 +1,17 @@
-'use strict';const reveal=document.getElementById('reveal');const note=document.getElementById('hidden-note');reveal.addEventListener('click',()=>{note.hidden=false;reveal.setAttribute('aria-expanded','true');reveal.textContent='The question is yours ♡';note.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});});document.getElementById('hearts').addEventListener('click',()=>{document.getElementById('answer').textContent='A whole lot of love, sent your way ♡';if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;for(let i=0;i<18;i++){let x=document.createElement('div');x.textContent='♥';x.style.cssText='position:fixed;bottom:-30px;left:'+Math.random()*100+'%;color:#f3b3c3;font-size:25px;pointer-events:none;z-index:50;transition:transform 3s,opacity 3s';document.body.append(x);requestAnimationFrame(()=>{x.style.transform='translateY(-110vh)';x.style.opacity='0'});setTimeout(()=>x.remove(),3200)}});
+'use strict';
+const button = document.getElementById('little-surprise');
+const message = document.getElementById('surprise-message');
+button.addEventListener('click', () => {
+  message.hidden = false;
+  button.textContent = 'Always, a little more ♡';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  for (let i=0; i<16; i++) {
+    const heart=document.createElement('span');
+    heart.textContent=['♡','♥','✧'][i%3];
+    heart.setAttribute('aria-hidden','true');
+    heart.style.cssText='position:fixed;bottom:-35px;left:'+Math.random()*100+'%;color:#f1c2d0;font-size:'+(16+Math.random()*20)+'px;pointer-events:none;z-index:100;transition:transform 3s ease-out,opacity 3s';
+    document.body.appendChild(heart);
+    requestAnimationFrame(()=>{heart.style.transform='translateY(-110vh)';heart.style.opacity='0';});
+    setTimeout(()=>heart.remove(),3100);
+  }
+});
